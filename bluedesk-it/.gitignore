@@ -1,0 +1,6 @@
+.env
+php/config.php
+__pycache__/
+*.pyc
+*.zip
+.venv/

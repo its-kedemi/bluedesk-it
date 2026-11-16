@@ -1,0 +1,8 @@
+# Block direct web access to settings and the mail library (Apache / cPanel hosts)
+<Files "config.php">
+  Require all denied
+</Files>
+<FilesMatch "^(README\.md)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

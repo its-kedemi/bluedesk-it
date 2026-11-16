@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: bluedesk-it
+    runtime: python
+    plan: free            # SMTP ports are blocked on the free plan: use RESEND_API_KEY, or switch to a paid plan for SMTP
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /healthz
+    envVars:
+      - key: RESEND_API_KEY   # recommended on the free plan
+        sync: false
+      - key: SMTP_HOST        # only needed on a paid plan
+        value: mail.bluedesk.co.ke
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        value: info@bluedesk.co.ke
+      - key: SMTP_PASS
+        sync: false
+      - key: FROM_EMAIL
+        value: info@bluedesk.co.ke
+      - key: TO_EMAIL
+        value: info@bluedesk.co.ke
